@@ -1,0 +1,7 @@
+name: ParkourAddon
+version: '${project.version}'
+main: me.alen_alex.parkouraddon.parkouraddon.ParkourAddon
+authors: [ Alen_Alex ]
+depend:
+  - HubPvPSword
+  - ajParkour
