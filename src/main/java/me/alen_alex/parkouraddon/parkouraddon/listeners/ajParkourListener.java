@@ -2,9 +2,11 @@ package me.alen_alex.parkouraddon.parkouraddon.listeners;
 
 import me.alen_alex.parkouraddon.parkouraddon.ParkourAddon;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
 import us.ajg0702.parkour.api.events.PrePlayerStartParkourEvent;
 
 public class ajParkourListener implements Listener {
@@ -25,9 +27,24 @@ public class ajParkourListener implements Listener {
          if(plugin.getInPvP().contains(player)) {
              event.setCancelled(true);
              player.sendMessage(ChatColor.translateAlternateColorCodes('&',"&cYou are unable to start the parkour during your pvp session!"));
+             return;
          }
+
+        if(player.getItemInHand() != null) {
+            ItemStack sword = player.getItemInHand();
+                if(sword.getType() == Material.DIAMOND_SWORD){
+                    if(sword.hasItemMeta()){
+                        if(sword.getItemMeta().hasDisplayName() && sword.getItemMeta().getDisplayName().equals(ChatColor.translateAlternateColorCodes('&',"&aPvP Sword &7(Hold To Fight)"))){
+                            event.setCancelled(true);
+                            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou are unable to start the parkour during your pvp session!"));
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
 
     }
 
 
-}
