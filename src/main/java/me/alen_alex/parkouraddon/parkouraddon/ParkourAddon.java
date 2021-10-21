@@ -1,20 +1,19 @@
 package me.alen_alex.parkouraddon.parkouraddon;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
-import me.alen_alex.parkouraddon.parkouraddon.listeners.HubPvPSwordListener;
-import me.alen_alex.parkouraddon.parkouraddon.listeners.PlayerBowTeleportListener;
-import me.alen_alex.parkouraddon.parkouraddon.listeners.PlayerMoveListener;
-import me.alen_alex.parkouraddon.parkouraddon.listeners.ajParkourListener;
+import me.alen_alex.parkouraddon.parkouraddon.listeners.*;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public final class ParkourAddon extends JavaPlugin {
 
     private static ParkourAddon plugin;
     private static List<Player> inPvP = new ArrayList<Player>();
+    private static HashMap<Player,Float> playerSpeeds= new HashMap<Player,Float>();
     private boolean worldguardEnabled = false;
     private WorldGuardPlugin worldGuardPlugin;
 
@@ -31,16 +30,7 @@ public final class ParkourAddon extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new HubPvPSwordListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerBowTeleportListener(this),this);
         getServer().getPluginManager().registerEvents(new PlayerMoveListener(this),this);
-        /*orldguardEnabled = getServer().getPluginManager().isPluginEnabled("WorldGuard");
-        if(worldguardEnabled){
-            getLogger().info("Worldguard found!");
-            worldGuardPlugin = WorldGuardPlugin.inst();
-            if(worldGuardPlugin != null)
-                getLogger().info("Hooking into it");
-            else
-                getLogger().info("Hooking failed!");
-            worldguardEnabled = false;
-        }*/
+        getServer().getPluginManager().registerEvents(new PlayerLeaveListener(this),this);
         getLogger().info("Plugin is enabled!");
     }
 
@@ -59,5 +49,9 @@ public final class ParkourAddon extends JavaPlugin {
 
     public WorldGuardPlugin getWorldGuardPlugin() {
         return worldGuardPlugin;
+    }
+
+    public HashMap<Player, Float> getPlayerSpeeds() {
+        return playerSpeeds;
     }
 }
