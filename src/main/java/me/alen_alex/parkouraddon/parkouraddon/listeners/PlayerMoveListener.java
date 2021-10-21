@@ -28,10 +28,9 @@ public class PlayerMoveListener implements Listener {
 
         final Player player = event.getPlayer();
 
-        if (plugin.getInPvP().contains(player)) {
+        if (plugin.getInPvP().contains(player))
             player.setWalkSpeed(0.0F);
 
-        }
     }
 
 }
