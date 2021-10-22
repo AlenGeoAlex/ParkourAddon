@@ -23,10 +23,7 @@ public class HubPvPSwordListener implements Listener {
         if(!plugin.getInPvP().contains(player))
             plugin.getInPvP().add(player);
 
-        if(plugin.getPlayerSpeeds().containsKey(player))
-            plugin.getPlayerSpeeds().remove(player);
-
-        plugin.getPlayerSpeeds().put(player,player.getWalkSpeed());
+        plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(),"lp user "+player.getName()+" permission set worldguard.region.bypass.Lobby.__Global__.walk-speed");
 
 
     }
@@ -38,10 +35,7 @@ public class HubPvPSwordListener implements Listener {
         if(plugin.getInPvP().contains(player))
             plugin.getInPvP().remove(player);
 
-        if(plugin.getPlayerSpeeds().containsKey(player)){
-            player.setWalkSpeed(plugin.getPlayerSpeeds().get(player));
-            plugin.getPlayerSpeeds().remove(player);
-        }
+        plugin.getServer().dispatchCommand(plugin.getServer().getConsoleSender(),"lp user "+player.getName()+" permission unset worldguard.region.bypass.Lobby.__Global__.walk-speed");
 
     }
 

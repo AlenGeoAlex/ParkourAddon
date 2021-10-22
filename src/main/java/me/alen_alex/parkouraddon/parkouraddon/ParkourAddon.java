@@ -13,7 +13,6 @@ public final class ParkourAddon extends JavaPlugin {
 
     private static ParkourAddon plugin;
     private static List<Player> inPvP = new ArrayList<Player>();
-    private static HashMap<Player,Float> playerSpeeds= new HashMap<Player,Float>();
     private boolean worldguardEnabled = false;
     private WorldGuardPlugin worldGuardPlugin;
 
@@ -29,7 +28,7 @@ public final class ParkourAddon extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ajParkourListener(this), this);
         getServer().getPluginManager().registerEvents(new HubPvPSwordListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerBowTeleportListener(this),this);
-        getServer().getPluginManager().registerEvents(new PlayerMoveListener(this),this);
+        //getServer().getPluginManager().registerEvents(new PlayerMoveListener(this),this);
         getServer().getPluginManager().registerEvents(new PlayerLeaveListener(this),this);
         getLogger().info("Plugin is enabled!");
     }
@@ -51,7 +50,4 @@ public final class ParkourAddon extends JavaPlugin {
         return worldGuardPlugin;
     }
 
-    public HashMap<Player, Float> getPlayerSpeeds() {
-        return playerSpeeds;
-    }
 }

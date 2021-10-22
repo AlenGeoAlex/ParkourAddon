@@ -18,11 +18,8 @@ public class PlayerLeaveListener implements Listener {
     public void onPlayerLeaveEvent(PlayerQuitEvent event){
         final Player player = event.getPlayer();
 
-        if(plugin.getPlayerSpeeds().containsKey(player))
-            plugin.getPlayerSpeeds().remove(player);
-
         if(plugin.getInPvP().contains(player))
-            plugin.getPlayerSpeeds().remove(player);
+            plugin.getInPvP().remove(player);
     }
 
 }
